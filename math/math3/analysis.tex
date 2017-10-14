@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt,twocolumn]{jsbook}
+\documentclass[a4paper,11pt,twocolumn,uplatex]{jsbook}
 \usepackage{amsthm} %theorem
 \usepackage{amsmath} %cases
 \usepackage{amssymb} %\becase
@@ -152,7 +152,33 @@
     \end{array}
   \end{eqnarray*}
   ゆえに求めるaの範囲は,
-  $\bm{0<a<\frac{4}{e^2(\log2)^2}}$
+  $\bm{0<a<\frac{4}{e^2(\log2)^2}}$.
+\end{solution}
+
+\begin{screen}
+  \begin{example}
+    $e^\pi$と$\pi^e$の大小を比較せよ.
+  \end{example}
+\end{screen}
+\begin{solution}
+  AとBの大小がCとDの大小に等しいことを $A \gtreqless B \Leftrightarrow C \gtreqless D$と表すことにすると,$p,q>0$のとき,
+  \begin{eqnarray}
+    p^q \gtreqless q^p \Leftrightarrow q \log p \gtreqless p\log q \nonumber \\
+    \Leftrightarrow \frac{\log p}{p} \gtreqless \frac{\log q}{q} \label{eq:ppowerq}
+  \end{eqnarray}
+  よって$f(x)=\frac{\log x}{x}$と定義したとき,$f(e),f(\pi)$の大小を比べれば良い.
+  \begin{eqnarray*}
+    f'(x)=\frac{1-\log x}{x^2}
+  \end{eqnarray*}
+  よりfの増減表は,
+  \begin{eqnarray*}
+    \begin{array}[h]{c|ccccc}
+      x&0&\dots&e&\dots&+\infty\\ \hline
+      f'&&+&0&-&\\
+      f&-\infty&\nearrow&1/e&\searrow&0
+    \end{array}
+  \end{eqnarray*}
+  よって$f(e)>f(\pi)$だから(\ref{eq:ppowerq})より$\bm{e^\pi>\pi^e}$.
 \end{solution}
 
 \end{document}

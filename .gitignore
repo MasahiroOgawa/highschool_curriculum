@@ -3,3 +3,7 @@
 *.dvi
 *.log
 *.pdf
+*.gz
+
+#emacs log
+*~
