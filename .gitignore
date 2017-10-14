@@ -1,0 +1,5 @@
+#tex outputs
+*.aux
+*.dvi
+*.log
+*.pdf

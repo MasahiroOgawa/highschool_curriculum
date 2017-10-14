@@ -1,0 +1,158 @@
+\documentclass[a4paper,11pt,twocolumn]{jsbook}
+\usepackage{amsthm} %theorem
+\usepackage{amsmath} %cases
+\usepackage{amssymb} %\becase
+\usepackage{ascmac} %box text
+\usepackage{bm}
+%\newtheorem{def}{定義}[section]
+\newtheorem{thm}{定理}[section]
+\newtheorem{example}{例題}[section]
+\newtheorem*{solution}{解答}
+
+
+\begin{document}
+\title{解析}
+\author{小川　雅弘}
+\maketitle
+
+
+\chapter{極限}
+
+\begin{screen}
+  \begin{example}
+    $a>1$のとき, $\lim_{x \to \infty} \frac{x^k}{a^x} = 0$　を示せ.
+  \end{example}
+\end{screen}
+\begin{solution}
+  $t>0$のとき,$f(t)=a^t$に対し,$f'(t)=a^t \log a, f''(t)=a^t (\log a)^2 > 0 \ (\because a>1)$だから
+  $f(t)$は常に接線より上にあり,t=0における接線$y=f'(0)t+f(0) = t \log a + 1$よりも上にあるので,
+  \begin{eqnarray*}
+    a^t > t\log a + 1 > t\log a \\
+    \Rightarrow a^{(k+1)t} > (t \log a)^{k+1}
+  \end{eqnarray*}
+  $(k+1)t=x$とおけば,
+  \begin{eqnarray*}
+    0 < \frac{x^k}{a^x} < \frac{1}{x} \left( \frac{k+1}{\log a} \right)^{k+1} 
+    \xrightarrow[x \to \infty]{} 0
+  \end{eqnarray*}
+  よって示せた. \qed
+\end{solution}
+
+\section{無限等比級数}
+
+\begin{screen}
+  \begin{thm}
+    無限等比級数の和 $S = \sum_{n=1}^\infty a r^{n-1}$　は, 
+    $r \neq 1$　のとき,
+    \begin{equation}
+      S_n = \sum_{k=1}^n a r^{k-1} = a \frac{1-r^n}{1-r}
+    \end{equation}
+    より,
+    \begin{equation}
+      S =
+      \begin{cases}
+        0 & a=0\\
+        \frac{a}{1-r} & -1<r<1\\
+        発散 & otherwise.
+      \end{cases}
+    \end{equation}
+  \end{thm}
+\end{screen}
+
+\begin{screen}
+  \begin{example}
+    以下の循環小数を分数に直せ.
+    $0.\dot{1}\dot{2}$
+  \end{example}
+\end{screen}
+\begin{solution}
+  \begin{eqnarray}
+    0.\dot{1}\dot{2} = \frac{12}{100} + \frac{12}{100^2} + \dots 
+    = \frac{12/100}{1-1/100} \nonumber \\
+    = \frac{12}{99} = \bm{\frac{4}{33}} \nonumber
+  \end{eqnarray}
+\end{solution}
+
+
+\chapter{微分法}
+
+\begin{screen}
+  \begin{example}
+    円$C$: $x^2+(y-1)^2=1/4$上の点$P$と,曲線D: $y=\log x$上の点Q
+    を結ぶ線分PQの長さの最小値を求めよ.
+  \end{example}
+\end{screen}
+\begin{solution}
+  曲線D上の任意の点Qに対し,円C上の点PでPQが最短となるのは,
+  Pが円Cの中心$A(0,1)$とQを結ぶ線分AQ上にあるときであり,
+  このとき最短距離は,
+  \begin{eqnarray}
+    PQ = AQ - 1/2
+    \label{eq:minpq}
+  \end{eqnarray}
+  である.よってAQの最小値を求めれば良い.
+
+  Q$(x,\log x)\ (x>0)$とおくと,
+  \begin{eqnarray}
+    f(x) := AQ^2
+    = x^2 + (\log x - 1)^2 \nonumber \\
+    \Rightarrow f'(x) = 2x + 2(\log x - 1)\frac{1}{x} \nonumber \\
+    = \frac{2}{x} (x^2 + \log x - 1) 
+    =: \frac{2}{x} g(x) \nonumber \\
+    \Rightarrow g'(x) = 1/x + 2x > 0 \ (x>0) \nonumber
+  \end{eqnarray}
+  より$g(x)$は単調増加関数であり, $g(1) = 0$だから,
+  $f(x)$の増減表は下表のようになる.
+  \begin{eqnarray}
+    \begin{array}{c|cccc}
+      x & 0 & \dots & 1 & \dots \\ \hline
+      g && - & 0 & + \\
+      f' && - & 0 & + \\
+      f && \searrow & \min & \nearrow \nonumber
+    \end{array}
+  \end{eqnarray}
+
+  よって,
+  \begin{eqnarray}
+    \min AQ = \sqrt{f(1)} = \sqrt{2} \nonumber 
+  \end{eqnarray}
+  だから(\ref{eq:minpq})より,
+  \begin{eqnarray}
+    \min PQ = \bm{\sqrt{2} - \frac{1}{2}} \nonumber
+  \end{eqnarray}
+\end{solution}
+
+\begin{screen}
+  \begin{example}
+    方程式 $a 2^x - x^2 = 0$ が異なる3つの解をもつような実数aの範囲を求めよ.
+  \end{example}
+\end{screen}
+\begin{solution}
+  \begin{eqnarray}
+    a 2^x - x^2 = 0 \label{eq:numsolution}\\
+    \Rightarrow a = \frac{x^2}{2^x} \nonumber
+  \end{eqnarray}
+  より,(\ref{eq:numsolution})の実数解は,曲線 $y=f(x):=\frac{x^2}{2^x}$と
+  直線$y=a$の交点のx座標に等しいので,これらが異なる3交点を持てば良い.
+  そこで$y=f(x)$のグラフを描く.
+  \begin{eqnarray*}
+    f'(x) = \frac{2x2^x - x^22^x\log 2}{2^{2x}} = \frac{x}{2^x}(2-x\log 2)\\
+    f(-\infty)=+\infty, 
+    f(+\infty)=0, 
+    f(0)=0\\
+    f(2/\log 2) = \frac{(2/\log2)^2}{2^{2/\log2}} = \frac{4/(\log2)^2}{2^{2\log e}} 
+    = \frac{4}{e^2 (\log2)^2}
+  \end{eqnarray*}
+  よって増減表は下図のようになる.
+  \begin{eqnarray*}
+    \begin{array}{c|ccccccc}
+      x&-\infty&\dots&0&\dots&\frac{2}{\log2}&\dots&+\infty\\
+      f'&&-&0&+&0&-&\\
+      f&+\infty&\searrow&0&\nearrow&\frac{4}{e^2(\log2)^2}&\searrow&0
+    \end{array}
+  \end{eqnarray*}
+  ゆえに求めるaの範囲は,
+  $\bm{0<a<\frac{4}{e^2(\log2)^2}}$
+\end{solution}
+
+\end{document}
